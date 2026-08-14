@@ -1,0 +1,2 @@
+This repo is for a backend, to be used with a specific Streamdeck architecture.
+It handles advances OBS source selection, scene switching, and Streamdeck button changes, that are not possible/harder to maintain using the native Streamdeck.
