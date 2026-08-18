@@ -1,26 +1,16 @@
-from flask import Flask, request, jsonify
-from obsws_python import ReqClient
-
-from FlaskServer import FlaskServer
-
-
-def helloWorldGet(payload):
-    print(payload['message'])
-    return f"Hello, {payload['message']}!"
-
-
-def helloWorldPost(payload):
-    print(payload['message'])
-    return f"Hello, {payload['message']}!"
+from FlaskServer import FlaskServer, get_payload, post_payload
+from mainPage import mainPageRoutes
+from OBSHandler import OBSHandler
 
 
 def main():
-    flaskServer = FlaskServer()
+    flaskServerInst = FlaskServer()
+    obs = OBSHandler()
 
-    flaskServer.addGetRoute("/helloGet", helloWorldGet)
-    flaskServer.addPostRoute("/helloPost", helloWorldPost)
+    # Register feature routes
+    mainPageRoutes(flaskServerInst.app, obs)
 
-    flaskServer.run()
+    flaskServerInst.run()
 
 
 if __name__ == "__main__":
